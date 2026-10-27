@@ -23,16 +23,8 @@
             --white: #FFFFFF;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--black);
@@ -40,937 +32,314 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--crimson); border-radius: 4px; }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--crimson);
-            border-radius: 4px;
-        }
-
-        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            transition: all 0.3s ease;
-            background: transparent;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 1rem 2rem; transition: all 0.3s ease; background: transparent;
         }
-
         nav.scrolled {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(164, 30, 34, 0.3);
         }
-
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 1400px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 45px;
-            width: auto;
-        }
-
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .logo-text {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: -0.5px;
+            font-size: 1.5rem; font-weight: 700; color: var(--white); letter-spacing: -0.5px;
         }
-
-        .logo-text span {
-            color: var(--crimson);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
+        .logo-text span { color: var(--crimson); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a {
-            color: var(--light-gray);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            transition: color 0.3s ease;
+            color: var(--light-gray); text-decoration: none; font-weight: 500;
+            font-size: 0.95rem; position: relative; transition: color 0.3s ease;
         }
-
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--crimson);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--crimson); transition: width 0.3s ease;
         }
+        .nav-links a:hover { color: var(--crimson); }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; }
+        .mobile-menu-btn span { width: 25px; height: 2px; background: var(--white); }
 
-        .nav-links a:hover {
-            color: var(--crimson);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 2px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 6rem 2rem 4rem;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; padding: 6rem 2rem 4rem;
         }
-
         .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
+            position: absolute; inset: 0;
+            background:
                 radial-gradient(ellipse at 20% 20%, rgba(164, 30, 34, 0.15) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 80%, rgba(164, 30, 34, 0.1) 0%, transparent 50%),
                 linear-gradient(180deg, var(--black) 0%, var(--dark) 100%);
         }
-
         .grid-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
+            position: absolute; inset: 0;
+            background-image:
                 linear-gradient(rgba(164, 30, 34, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(164, 30, 34, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: gridMove 20s linear infinite;
         }
-
         @keyframes gridMove {
             0% { transform: translate(0, 0); }
             100% { transform: translate(50px, 50px); }
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-            text-align: center;
-        }
-
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; text-align: center; }
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
             background: rgba(164, 30, 34, 0.15);
             border: 1px solid rgba(164, 30, 34, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--crimson-light);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease forwards;
-            opacity: 0;
+            padding: 8px 20px; border-radius: 50px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--crimson-light); margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards; opacity: 0;
         }
-
         .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--crimson);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
+            content: ''; width: 8px; height: 8px; background: var(--crimson);
+            border-radius: 50%; animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.2); }
         }
-
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-            opacity: 0;
+            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800;
+            line-height: 1.1; margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0;
         }
-
         .hero h1 .highlight {
             background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
         .hero-description {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto 2.5rem;
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-            opacity: 0;
+            font-size: 1.25rem; color: var(--text-muted); max-width: 650px;
+            margin: 0 auto 2.5rem; animation: fadeInUp 0.8s ease 0.4s forwards; opacity: 0;
         }
-
         .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.6s forwards;
-            opacity: 0;
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s forwards; opacity: 0;
         }
-
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 32px; border-radius: 8px; font-weight: 600; font-size: 1rem;
+            text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none;
         }
-
         .btn-primary {
             background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
-            color: var(--white);
-            box-shadow: 0 4px 20px rgba(164, 30, 34, 0.4);
+            color: var(--white); box-shadow: 0 4px 20px rgba(164, 30, 34, 0.4);
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(164, 30, 34, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--crimson);
-        }
-
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(164, 30, 34, 0.5); }
+        .btn-secondary { background: transparent; color: var(--white); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--crimson); }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Terminal Animation */
         .hero-terminal {
-            margin-top: 4rem;
-            background: var(--dark-gray);
-            border: 1px solid var(--mid-gray);
-            border-radius: 12px;
-            overflow: hidden;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
-            animation: fadeInUp 0.8s ease 0.8s forwards;
-            opacity: 0;
+            margin-top: 4rem; background: var(--dark-gray);
+            border: 1px solid var(--mid-gray); border-radius: 12px; overflow: hidden;
+            max-width: 600px; margin-left: auto; margin-right: auto; text-align: left;
+            animation: fadeInUp 0.8s ease 0.8s forwards; opacity: 0;
         }
-
         .terminal-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
-            background: var(--mid-gray);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+            background: var(--mid-gray); border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
         .terminal-dot.red { background: #FF5F56; }
         .terminal-dot.yellow { background: #FFBD2E; }
         .terminal-dot.green { background: #27CA40; }
-
-        .terminal-body {
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-        }
-
-        .terminal-line {
-            margin-bottom: 8px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .terminal-prompt {
-            color: var(--crimson);
-        }
-
-        .terminal-command {
-            color: var(--light-gray);
-        }
-
-        .terminal-output {
-            color: var(--text-muted);
-            padding-left: 20px;
-        }
-
+        .terminal-body { padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+        .terminal-line { margin-bottom: 8px; display: flex; gap: 10px; }
+        .terminal-prompt { color: var(--crimson); }
+        .terminal-command { color: var(--light-gray); }
+        .terminal-output { color: var(--text-muted); padding-left: 20px; }
         .typing-cursor {
-            display: inline-block;
-            width: 10px;
-            height: 18px;
-            background: var(--crimson);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 4px;
+            display: inline-block; width: 10px; height: 18px; background: var(--crimson);
+            animation: blink 1s infinite; vertical-align: middle; margin-left: 4px;
         }
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
+        section { padding: 6rem 2rem; }
+        .section-container { max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
         .section-tag {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--crimson);
-            background: rgba(164, 30, 34, 0.1);
-            padding: 6px 16px;
-            border-radius: 4px;
-            margin-bottom: 1rem;
+            display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--crimson); background: rgba(164, 30, 34, 0.1);
+            padding: 6px 16px; border-radius: 4px; margin-bottom: 1rem;
             border: 1px solid rgba(164, 30, 34, 0.2);
         }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Services Section */
-        #hizmetler {
-            background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-
+        #hizmetler { background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
         .service-card {
-            background: var(--dark-gray);
-            border: 1px solid var(--mid-gray);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            background: var(--dark-gray); border: 1px solid var(--mid-gray); border-radius: 16px;
+            padding: 2rem; transition: all 0.4s ease; position: relative; overflow: hidden;
         }
-
         .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
             background: linear-gradient(90deg, var(--crimson), var(--crimson-light));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+            transform: scaleX(0); transition: transform 0.4s ease;
         }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(164, 30, 34, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
+        .service-card:hover { transform: translateY(-5px); border-color: rgba(164, 30, 34, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .service-card:hover::before { transform: scaleX(1); }
         .service-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(164, 30, 34, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            width: 60px; height: 60px; background: rgba(164, 30, 34, 0.1); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem;
         }
+        .service-card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; color: var(--white); }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+        .service-features { list-style: none; }
+        .service-features li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--light-gray); margin-bottom: 8px; }
+        .service-features li::before { content: '▹'; color: var(--crimson); font-size: 1rem; }
 
-        .service-card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-        }
-
-        .service-features li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: var(--light-gray);
-            margin-bottom: 8px;
-        }
-
-        .service-features li::before {
-            content: '▹';
-            color: var(--crimson);
-            font-size: 1rem;
-        }
-
-        /* Stats Section */
         .stats-section {
-            background: var(--dark-gray);
-            padding: 4rem 2rem;
-            border-top: 1px solid var(--mid-gray);
-            border-bottom: 1px solid var(--mid-gray);
+            background: var(--dark-gray); padding: 4rem 2rem;
+            border-top: 1px solid var(--mid-gray); border-bottom: 1px solid var(--mid-gray);
         }
+        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 3rem; font-weight: 800; color: var(--crimson); margin-bottom: 0.5rem; font-family: 'JetBrains Mono', monospace; }
+        .stat-label { color: var(--text-muted); font-size: 0.95rem; }
 
-        .stats-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--crimson);
-            margin-bottom: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* References Section */
-        #referanslar {
-            background: var(--black);
-        }
-
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
+        #referanslar { background: var(--black); }
+        .clients-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
         .client-logo {
-            background: var(--dark-gray);
+            background: #F4F4F4;
             border: 1px solid var(--mid-gray);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100px;
+            min-height: 110px;
             transition: all 0.3s ease;
         }
-
         .client-logo:hover {
             border-color: var(--crimson);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(164, 30, 34, 0.15);
-            background: var(--mid-gray);
         }
-
         .client-logo img {
-            max-width: 120px;
-            max-height: 50px;
+            max-width: 168px;
+            max-height: 64px;
+            width: auto;
+            height: auto;
             object-fit: contain;
-            transition: all 0.3s ease;
         }
+        .client-logo.logo-invert img { filter: none; }
+        .client-name { font-size: 1rem; font-weight: 600; color: #333; text-align: center; }
+        .client-name.fallback { display: none; }
 
-        .client-logo:hover img {
-            transform: scale(1.05);
-        }
-
-        .client-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--light-gray);
-            text-align: center;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-
-        .client-name.fallback {
-            display: none;
-        }
-
-        .client-logo:hover .client-name {
-            color: var(--white);
-            opacity: 1;
-        }
-
-        /* Methodology Section */
-        .methodology-section {
-            background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
-        }
-
-        .methodology-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-            position: relative;
-        }
-
+        .methodology-section { background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%); }
+        .methodology-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; position: relative; }
         .methodology-grid::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--crimson), transparent);
-            z-index: 0;
+            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--crimson), transparent); z-index: 0;
         }
-
         .method-step {
-            background: var(--dark-gray);
-            border: 1px solid var(--mid-gray);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            transition: all 0.3s ease;
+            background: var(--dark-gray); border: 1px solid var(--mid-gray); border-radius: 16px;
+            padding: 2rem 1.5rem; text-align: center; position: relative; z-index: 1; transition: all 0.3s ease;
         }
-
-        .method-step:hover {
-            transform: translateY(-5px);
-            border-color: var(--crimson);
-        }
-
+        .method-step:hover { transform: translateY(-5px); border-color: var(--crimson); }
         .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--crimson);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 1.2rem;
+            width: 50px; height: 50px; background: var(--crimson); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1.2rem;
             margin: 0 auto 1rem;
         }
+        .method-step h4 { font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--white); }
+        .method-step p { color: var(--text-muted); font-size: 0.85rem; }
 
-        .method-step h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            color: var(--white);
-        }
-
-        .method-step p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        /* Contact Section */
-        #iletisim {
-            background: var(--dark);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
+        #iletisim { background: var(--dark); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; }
+        .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+        .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
         .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(164, 30, 34, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            width: 50px; height: 50px; background: rgba(164, 30, 34, 0.1); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-
-        .contact-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--crimson);
+        .contact-icon svg { width: 24px; height: 24px; stroke: var(--crimson); }
+        .contact-details h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--white); }
+        .contact-details p, .contact-details a { color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
+        .contact-details a:hover { color: var(--crimson); }
+        .contact-form { background: var(--dark-gray); border: 1px solid var(--mid-gray); border-radius: 20px; padding: 2.5rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--light-gray); }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 14px 18px; background: var(--mid-gray); border: 1px solid transparent;
+            border-radius: 10px; color: var(--white); font-family: 'Outfit', sans-serif; font-size: 1rem; transition: all 0.3s ease;
         }
-
-        .contact-details h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--crimson); background: var(--dark);
         }
-
-        .contact-details p, .contact-details a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-details a:hover {
-            color: var(--crimson);
-        }
-
-        .contact-form {
-            background: var(--dark-gray);
-            border: 1px solid var(--mid-gray);
-            border-radius: 20px;
-            padding: 2.5rem;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--light-gray);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            background: var(--mid-gray);
-            border: 1px solid transparent;
-            border-radius: 10px;
-            color: var(--white);
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--crimson);
-            background: var(--dark);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
+        .form-group textarea { min-height: 150px; resize: vertical; }
         .form-group select {
-            cursor: pointer;
-            appearance: none;
+            cursor: pointer; appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 18px;
+            background-repeat: no-repeat; background-position: right 12px center; background-size: 18px;
         }
+        .submit-btn { width: 100%; padding: 16px; margin-top: 1rem; }
 
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            margin-top: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--black);
-            border-top: 1px solid var(--mid-gray);
-            padding: 3rem 2rem 2rem;
-        }
-
+        footer { background: var(--black); border-top: 1px solid var(--mid-gray); padding: 3rem 2rem 2rem; }
         .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
+            max-width: 1400px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;
         }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .footer-logo img {
-            height: 40px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--crimson);
-        }
-
+        .footer-logo { display: flex; align-items: center; gap: 12px; }
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--crimson); }
         .footer-bottom {
-            max-width: 1400px;
-            margin: 2rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid var(--mid-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            max-width: 1400px; margin: 2rem auto 0; padding-top: 2rem;
+            border-top: 1px solid var(--mid-gray); display: flex;
+            justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
         }
-
-        .footer-bottom p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
+        .footer-bottom p { color: var(--text-muted); font-size: 0.85rem; }
+        .social-links { display: flex; gap: 1rem; }
         .social-links a {
-            width: 40px;
-            height: 40px;
-            background: var(--dark-gray);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+            width: 40px; height: 40px; background: var(--dark-gray); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
         }
+        .social-links a:hover { background: var(--crimson); }
+        .social-links svg { width: 20px; height: 20px; fill: var(--light-gray); }
 
-        .social-links a:hover {
-            background: var(--crimson);
-        }
-
-        .social-links svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--light-gray);
-        }
-
-        /* Mobile Styles */
         @media (max-width: 1024px) {
-            .methodology-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .methodology-grid::before {
-                display: none;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .clients-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+            .methodology-grid { grid-template-columns: repeat(3, 1fr); }
+            .methodology-grid::before { display: none; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .clients-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--dark);
-                flex-direction: column;
-                padding: 1.5rem;
-                gap: 1.5rem;
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--dark); flex-direction: column; padding: 1.5rem; gap: 1.5rem;
                 border-bottom: 1px solid var(--mid-gray);
             }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .hero {
-                padding: 8rem 1.5rem 4rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .methodology-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: flex; }
+            .hero { padding: 8rem 1.5rem 4rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .methodology-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
-
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
         .fade-in-delay-1 { transition-delay: 0.1s; }
         .fade-in-delay-2 { transition-delay: 0.2s; }
         .fade-in-delay-3 { transition-delay: 0.3s; }
@@ -979,12 +348,9 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <span class="logo-text">Null<span>Sec</span></span>
-            </a>
+            <a href="#" class="logo"><span class="logo-text">Null<span>Sec</span></span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#anasayfa">Ana Sayfa</a></li>
                 <li><a href="#hizmetler">Hizmetler</a></li>
@@ -992,37 +358,22 @@
                 <li><a href="#referanslar">Referanslar</a></li>
                 <li><a href="#iletisim">İletişim</a></li>
             </ul>
-            <div class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="anasayfa">
         <div class="hero-bg"></div>
         <div class="grid-overlay"></div>
         <div class="hero-content">
-            <div class="hero-badge">
-                <span>Önce Güvenlik</span>
-            </div>
-            <h1>
-                Siber Tehditlere Karşı<br>
-                <span class="highlight">Proaktif Savunma</span>
-            </h1>
-            <p class="hero-description">
-                Kurumsal sistemlerinizi gerçek saldırganların kullandığı tekniklerle test ediyor, güvenlik açıklarını keşfediyor ve çözüm önerileri sunuyoruz.
-            </p>
+            <div class="hero-badge"><span>Önce Güvenlik</span></div>
+            <h1>Siber Tehditlere Karşı<br><span class="highlight">Proaktif Savunma</span></h1>
+            <p class="hero-description">Kurumsal sistemlerinizi gerçek saldırganların kullandığı tekniklerle test ediyor, güvenlik açıklarını keşfediyor ve çözüm önerileri sunuyoruz.</p>
             <div class="hero-buttons">
-                <a href="#iletisim" class="btn btn-primary">
-                    Ücretsiz Değerlendirme
+                <a href="#iletisim" class="btn btn-primary">Ücretsiz Değerlendirme
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#hizmetler" class="btn btn-secondary">
-                    Hizmetlerimiz
-                </a>
+                <a href="#hizmetler" class="btn btn-secondary">Hizmetlerimiz</a>
             </div>
             <div class="hero-terminal">
                 <div class="terminal-header">
@@ -1031,45 +382,25 @@
                     <span class="terminal-dot green"></span>
                 </div>
                 <div class="terminal-body">
-                    <div class="terminal-line">
-                        <span class="terminal-prompt">nullsec@kali:~$</span>
-                        <span class="terminal-command">nmap -sV --script vuln target.com</span>
-                    </div>
+                    <div class="terminal-line"><span class="terminal-prompt">nullsec@kali:~$</span><span class="terminal-command">nmap -sV --script vuln target.com</span></div>
                     <div class="terminal-output">Starting vulnerability scan...</div>
                     <div class="terminal-output">Discovered 3 critical vulnerabilities</div>
-                    <div class="terminal-line">
-                        <span class="terminal-prompt">nullsec@kali:~$</span>
-                        <span class="terminal-command">./exploit.py --target 192.168.1.1</span>
-                    </div>
+                    <div class="terminal-line"><span class="terminal-prompt">nullsec@kali:~$</span><span class="terminal-command">./exploit.py --target 192.168.1.1</span></div>
                     <div class="terminal-output">[+] Access granted - generating report<span class="typing-cursor"></span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
     <div class="stats-section">
         <div class="stats-grid">
-            <div class="stat-item fade-in">
-                <div class="stat-number">45+</div>
-                <div class="stat-label">Tamamlanan Test</div>
-            </div>
-            <div class="stat-item fade-in fade-in-delay-1">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Bulunan Zafiyet</div>
-            </div>
-            <div class="stat-item fade-in fade-in-delay-2">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Müşteri Memnuniyeti</div>
-            </div>
-            <div class="stat-item fade-in fade-in-delay-3">
-                <div class="stat-number">20</div>
-                <div class="stat-label">Yıllık Deneyim</div>
-            </div>
+            <div class="stat-item fade-in"><div class="stat-number">45+</div><div class="stat-label">Tamamlanan Test</div></div>
+            <div class="stat-item fade-in fade-in-delay-1"><div class="stat-number">500+</div><div class="stat-label">Bulunan Zafiyet</div></div>
+            <div class="stat-item fade-in fade-in-delay-2"><div class="stat-number">100%</div><div class="stat-label">Müşteri Memnuniyeti</div></div>
+            <div class="stat-item fade-in fade-in-delay-3"><div class="stat-number">20</div><div class="stat-label">Yıllık Deneyim</div></div>
         </div>
     </div>
 
-    <!-- Services Section -->
     <section id="hizmetler">
         <div class="section-container">
             <div class="section-header fade-in">
@@ -1077,168 +408,23 @@
                 <h2 class="section-title">Kapsamlı Sızma Testi Hizmetleri</h2>
                 <p class="section-subtitle">Her ölçekteki kuruluş için özelleştirilmiş güvenlik değerlendirme ve sızma testi çözümleri sunuyoruz.</p>
             </div>
-
             <div class="services-grid">
-                <!-- Service 1: Web Application -->
-                <div class="service-card fade-in">
-                    <div class="service-icon">🌐</div>
-                    <h3>Web Uygulama Sızma Testi</h3>
-                    <p>Web uygulamalarınızdaki güvenlik açıklarını OWASP Top 10 standartları çerçevesinde tespit ediyor, SQL Injection, XSS, CSRF gibi kritik zafiyetleri ortaya çıkarıyoruz.</p>
-                    <ul class="service-features">
-                        <li>OWASP Top 10 Testleri</li>
-                        <li>API Güvenlik Değerlendirmesi</li>
-                        <li>Kimlik Doğrulama Testleri</li>
-                        <li>Oturum Yönetimi Analizi</li>
-                    </ul>
-                </div>
-
-                <!-- Service 2: Network Penetration -->
-                <div class="service-card fade-in fade-in-delay-1">
-                    <div class="service-icon">🔌</div>
-                    <h3>Yerel Ağ Sızma Testi</h3>
-                    <p>İç ağ altyapınızı gerçek dünya saldırı senaryolarıyla test ediyor, yatay hareket olasılıklarını ve yetki yükseltme vektörlerini belirliyoruz.</p>
-                    <ul class="service-features">
-                        <li>Active Directory Güvenliği</li>
-                        <li>Ağ Segmentasyonu Testi</li>
-                        <li>Yetki Yükseltme Analizi</li>
-                        <li>Lateral Movement Testi</li>
-                    </ul>
-                </div>
-
-                <!-- Service 3: External Network -->
-                <div class="service-card fade-in fade-in-delay-2">
-                    <div class="service-icon">🌍</div>
-                    <h3>Dış Ağ Sızma Testi</h3>
-                    <p>İnternete açık sistemlerinizi, sunucularınızı ve servislerinizi dış saldırgan perspektifinden değerlendiriyor, saldırı yüzeyinizi haritalandırıyoruz.</p>
-                    <ul class="service-features">
-                        <li>Perimeter Güvenlik Testi</li>
-                        <li>Firewall Bypass Teknikleri</li>
-                        <li>Servis Zafiyet Taraması</li>
-                        <li>SSL/TLS Konfigürasyon Analizi</li>
-                    </ul>
-                </div>
-
-                <!-- Service 4: Mobile -->
-                <div class="service-card fade-in">
-                    <div class="service-icon">📱</div>
-                    <h3>Mobil Uygulama Sızma Testi</h3>
-                    <p>iOS ve Android uygulamalarınızı statik ve dinamik analiz yöntemleriyle test ediyor, veri sızıntısı risklerini ve güvensiz yapılandırmaları tespit ediyoruz.</p>
-                    <ul class="service-features">
-                        <li>iOS & Android Testi</li>
-                        <li>Reverse Engineering</li>
-                        <li>API Backend Güvenliği</li>
-                        <li>Veri Depolama Analizi</li>
-                    </ul>
-                </div>
-
-                <!-- Service 5: Wireless -->
-                <div class="service-card fade-in fade-in-delay-1">
-                    <div class="service-icon">📡</div>
-                    <h3>Kablosuz Ağ Sızma Testi</h3>
-                    <p>Wi-Fi ağlarınızın güvenliğini değerlendiriyor, yetkisiz erişim noktalarını tespit ediyor ve şifreleme zayıflıklarını ortaya çıkarıyoruz.</p>
-                    <ul class="service-features">
-                        <li>WPA/WPA2/WPA3 Testleri</li>
-                        <li>Rogue AP Tespiti</li>
-                        <li>Evil Twin Saldırı Simülasyonu</li>
-                        <li>Kablosuz IDS Bypass</li>
-                    </ul>
-                </div>
-
-                <!-- Service 6: Social Engineering -->
-                <div class="service-card fade-in fade-in-delay-2">
-                    <div class="service-icon">🎭</div>
-                    <h3>Sosyal Mühendislik Testleri</h3>
-                    <p>Çalışanlarınızın güvenlik farkındalığını phishing, vishing ve pretexting senaryolarıyla test ediyor, insan faktörü risklerini ölçüyoruz.</p>
-                    <ul class="service-features">
-                        <li>Phishing Kampanyaları</li>
-                        <li>Vishing (Telefon) Testleri</li>
-                        <li>USB Drop Saldırıları</li>
-                        <li>Farkındalık Eğitimleri</li>
-                    </ul>
-                </div>
-
-                <!-- Service 7: API Testing -->
-                <div class="service-card fade-in">
-                    <div class="service-icon">🔗</div>
-                    <h3>API Sızma Testi</h3>
-                    <p>REST, GraphQL ve SOAP API'lerinizi kapsamlı şekilde test ediyor, kimlik doğrulama bypass, injection ve business logic açıklarını tespit ediyoruz.</p>
-                    <ul class="service-features">
-                        <li>REST/GraphQL/SOAP Testi</li>
-                        <li>OAuth/JWT Güvenliği</li>
-                        <li>Rate Limiting Analizi</li>
-                        <li>Business Logic Testleri</li>
-                    </ul>
-                </div>
-
-                <!-- Service 8: Cloud Security -->
-                <div class="service-card fade-in fade-in-delay-1">
-                    <div class="service-icon">☁️</div>
-                    <h3>Bulut Güvenlik Testi</h3>
-                    <p>AWS, Azure ve GCP ortamlarınızdaki yanlış yapılandırmaları, aşırı yetkilendirmeleri ve veri sızıntısı risklerini tespit ediyoruz.</p>
-                    <ul class="service-features">
-                        <li>AWS/Azure/GCP Denetimi</li>
-                        <li>IAM Yapılandırma Analizi</li>
-                        <li>Container Güvenliği</li>
-                        <li>Serverless Güvenlik Testi</li>
-                    </ul>
-                </div>
-
-                <!-- Service 9: Red Team -->
-                <div class="service-card fade-in fade-in-delay-2">
-                    <div class="service-icon">🎯</div>
-                    <h3>Red Team Operasyonları</h3>
-                    <p>Gerçek dünya APT senaryolarını simüle ederek organizasyonunuzun tespit ve müdahale kapasitesini ölçüyor, savunma mekanizmalarınızı test ediyoruz.</p>
-                    <ul class="service-features">
-                        <li>APT Simülasyonu</li>
-                        <li>C2 Infrastructure Testleri</li>
-                        <li>Persistence Teknikleri</li>
-                        <li>EDR/SIEM Bypass</li>
-                    </ul>
-                </div>
-
-                <!-- Service 10: Physical Security -->
-                <div class="service-card fade-in">
-                    <div class="service-icon">🏢</div>
-                    <h3>Fiziksel Güvenlik Testi</h3>
-                    <p>Tesis güvenliğinizi değerlendiriyor, yetkisiz erişim olasılıklarını test ediyor ve fiziksel güvenlik kontrollerinizin etkinliğini ölçüyoruz.</p>
-                    <ul class="service-features">
-                        <li>Bina Erişim Testleri</li>
-                        <li>Tailgating Simülasyonu</li>
-                        <li>Kilit Bypass Teknikleri</li>
-                        <li>Badge Cloning Testleri</li>
-                    </ul>
-                </div>
-
-                <!-- Service 11: IoT Testing -->
-                <div class="service-card fade-in fade-in-delay-1">
-                    <div class="service-icon">🔧</div>
-                    <h3>IoT/OT Güvenlik Testi</h3>
-                    <p>Endüstriyel kontrol sistemleri ve IoT cihazlarınızın güvenliğini test ediyor, kritik altyapı risklerini belirliyoruz.</p>
-                    <ul class="service-features">
-                        <li>SCADA/ICS Güvenliği</li>
-                        <li>Firmware Analizi</li>
-                        <li>Protokol Güvenlik Testi</li>
-                        <li>Hardware Hacking</li>
-                    </ul>
-                </div>
-
-                <!-- Service 12: Source Code Review -->
-                <div class="service-card fade-in fade-in-delay-2">
-                    <div class="service-icon">💻</div>
-                    <h3>Kaynak Kod Analizi</h3>
-                    <p>Uygulamalarınızın kaynak kodunu güvenlik perspektifinden inceliyor, güvenli kodlama standartlarına uyumu değerlendiriyoruz.</p>
-                    <ul class="service-features">
-                        <li>SAST Analizi</li>
-                        <li>Güvenli Kodlama Denetimi</li>
-                        <li>Dependency Kontrolü</li>
-                        <li>Secret Detection</li>
-                    </ul>
-                </div>
+                <div class="service-card fade-in"><div class="service-icon">🌐</div><h3>Web Uygulama Sızma Testi</h3><p>Web uygulamalarınızdaki güvenlik açıklarını OWASP Top 10 standartları çerçevesinde tespit ediyor, SQL Injection, XSS, CSRF gibi kritik zafiyetleri ortaya çıkarıyoruz.</p><ul class="service-features"><li>OWASP Top 10 Testleri</li><li>API Güvenlik Değerlendirmesi</li><li>Kimlik Doğrulama Testleri</li><li>Oturum Yönetimi Analizi</li></ul></div>
+                <div class="service-card fade-in fade-in-delay-1"><div class="service-icon">🔌</div><h3>Yerel Ağ Sızma Testi</h3><p>İç ağ altyapınızı gerçek dünya saldırı senaryolarıyla test ediyor, yatay hareket olasılıklarını ve yetki yükseltme vektörlerini belirliyoruz.</p><ul class="service-features"><li>Active Directory Güvenliği</li><li>Ağ Segmentasyonu Testi</li><li>Yetki Yükseltme Analizi</li><li>Lateral Movement Testi</li></ul></div>
+                <div class="service-card fade-in fade-in-delay-2"><div class="service-icon">🌍</div><h3>Dış Ağ Sızma Testi</h3><p>İnternete açık sistemlerinizi, sunucularınızı ve servislerinizi dış saldırgan perspektifinden değerlendiriyor, saldırı yüzeyinizi haritalandırıyoruz.</p><ul class="service-features"><li>Perimeter Güvenlik Testi</li><li>Firewall Bypass Teknikleri</li><li>Servis Zafiyet Taraması</li><li>SSL/TLS Konfigürasyon Analizi</li></ul></div>
+                <div class="service-card fade-in"><div class="service-icon">📱</div><h3>Mobil Uygulama Sızma Testi</h3><p>iOS ve Android uygulamalarınızı statik ve dinamik analiz yöntemleriyle test ediyor, veri sızıntısı risklerini ve güvensiz yapılandırmaları tespit ediyoruz.</p><ul class="service-features"><li>iOS & Android Testi</li><li>Reverse Engineering</li><li>API Backend Güvenliği</li><li>Veri Depolama Analizi</li></ul></div>
+                <div class="service-card fade-in fade-in-delay-1"><div class="service-icon">📡</div><h3>Kablosuz Ağ Sızma Testi</h3><p>Wi-Fi ağlarınızın güvenliğini değerlendiriyor, yetkisiz erişim noktalarını tespit ediyor ve şifreleme zayıflıklarını ortaya çıkarıyoruz.</p><ul class="service-features"><li>WPA/WPA2/WPA3 Testleri</li><li>Rogue AP Tespiti</li><li>Evil Twin Saldırı Simülasyonu</li><li>Kablosuz IDS Bypass</li></ul></div>
+                <div class="service-card fade-in fade-in-delay-2"><div class="service-icon">🎭</div><h3>Sosyal Mühendislik Testleri</h3><p>Çalışanlarınızın güvenlik farkındalığını phishing, vishing ve pretexting senaryolarıyla test ediyor, insan faktörü risklerini ölçüyoruz.</p><ul class="service-features"><li>Phishing Kampanyaları</li><li>Vishing (Telefon) Testleri</li><li>USB Drop Saldırıları</li><li>Farkındalık Eğitimleri</li></ul></div>
+                <div class="service-card fade-in"><div class="service-icon">🔗</div><h3>API Sızma Testi</h3><p>REST, GraphQL ve SOAP API'lerinizi kapsamlı şekilde test ediyor, kimlik doğrulama bypass, injection ve business logic açıklarını tespit ediyoruz.</p><ul class="service-features"><li>REST/GraphQL/SOAP Testi</li><li>OAuth/JWT Güvenliği</li><li>Rate Limiting Analizi</li><li>Business Logic Testleri</li></ul></div>
+                <div class="service-card fade-in fade-in-delay-1"><div class="service-icon">☁️</div><h3>Bulut Güvenlik Testi</h3><p>AWS, Azure ve GCP ortamlarınızdaki yanlış yapılandırmaları, aşırı yetkilendirmeleri ve veri sızıntısı risklerini tespit ediyoruz.</p><ul class="service-features"><li>AWS/Azure/GCP Denetimi</li><li>IAM Yapılandırma Analizi</li><li>Container Güvenliği</li><li>Serverless Güvenlik Testi</li></ul></div>
+                <div class="service-card fade-in fade-in-delay-2"><div class="service-icon">🎯</div><h3>Red Team Operasyonları</h3><p>Gerçek dünya APT senaryolarını simüle ederek organizasyonunuzun tespit ve müdahale kapasitesini ölçüyor, savunma mekanizmalarınızı test ediyoruz.</p><ul class="service-features"><li>APT Simülasyonu</li><li>C2 Infrastructure Testleri</li><li>Persistence Teknikleri</li><li>EDR/SIEM Bypass</li></ul></div>
+                <div class="service-card fade-in"><div class="service-icon">🏢</div><h3>Fiziksel Güvenlik Testi</h3><p>Tesis güvenliğinizi değerlendiriyor, yetkisiz erişim olasılıklarını test ediyor ve fiziksel güvenlik kontrollerinizin etkinliğini ölçüyoruz.</p><ul class="service-features"><li>Bina Erişim Testleri</li><li>Tailgating Simülasyonu</li><li>Kilit Bypass Teknikleri</li><li>Badge Cloning Testleri</li></ul></div>
+                <div class="service-card fade-in fade-in-delay-1"><div class="service-icon">🔧</div><h3>IoT/OT Güvenlik Testi</h3><p>Endüstriyel kontrol sistemleri ve IoT cihazlarınızın güvenliğini test ediyor, kritik altyapı risklerini belirliyoruz.</p><ul class="service-features"><li>SCADA/ICS Güvenliği</li><li>Firmware Analizi</li><li>Protokol Güvenlik Testi</li><li>Hardware Hacking</li></ul></div>
+                <div class="service-card fade-in fade-in-delay-2"><div class="service-icon">💻</div><h3>Kaynak Kod Analizi</h3><p>Uygulamalarınızın kaynak kodunu güvenlik perspektifinden inceliyor, güvenli kodlama standartlarına uyumu değerlendiriyoruz.</p><ul class="service-features"><li>SAST Analizi</li><li>Güvenli Kodlama Denetimi</li><li>Dependency Kontrolü</li><li>Secret Detection</li></ul></div>
             </div>
         </div>
     </section>
 
-    <!-- Methodology Section -->
     <section class="methodology-section" id="metodoloji">
         <div class="section-container">
             <div class="section-header fade-in">
@@ -1246,38 +432,16 @@
                 <h2 class="section-title">Test Sürecimiz</h2>
                 <p class="section-subtitle">Uluslararası standartlara uygun, sistematik ve tekrarlanabilir bir metodoloji izliyoruz.</p>
             </div>
-
             <div class="methodology-grid">
-                <div class="method-step fade-in">
-                    <div class="step-number">01</div>
-                    <h4>Keşif & Planlama</h4>
-                    <p>Kapsam belirleme, hedef analizi ve test planı oluşturma</p>
-                </div>
-                <div class="method-step fade-in fade-in-delay-1">
-                    <div class="step-number">02</div>
-                    <h4>Bilgi Toplama</h4>
-                    <p>OSINT, ağ haritalama ve zafiyet taraması</p>
-                </div>
-                <div class="method-step fade-in fade-in-delay-2">
-                    <div class="step-number">03</div>
-                    <h4>Sızma & Exploit</h4>
-                    <p>Zafiyetlerin istismarı ve erişim elde etme</p>
-                </div>
-                <div class="method-step fade-in fade-in-delay-3">
-                    <div class="step-number">04</div>
-                    <h4>Post-Exploitation</h4>
-                    <p>Yetki yükseltme ve yatay hareket testleri</p>
-                </div>
-                <div class="method-step fade-in fade-in-delay-4">
-                    <div class="step-number">05</div>
-                    <h4>Raporlama</h4>
-                    <p>Detaylı bulgular ve çözüm önerileri</p>
-                </div>
+                <div class="method-step fade-in"><div class="step-number">01</div><h4>Keşif & Planlama</h4><p>Kapsam belirleme, hedef analizi ve test planı oluşturma</p></div>
+                <div class="method-step fade-in fade-in-delay-1"><div class="step-number">02</div><h4>Bilgi Toplama</h4><p>OSINT, ağ haritalama ve zafiyet taraması</p></div>
+                <div class="method-step fade-in fade-in-delay-2"><div class="step-number">03</div><h4>Sızma & Exploit</h4><p>Zafiyetlerin istismarı ve erişim elde etme</p></div>
+                <div class="method-step fade-in fade-in-delay-3"><div class="step-number">04</div><h4>Post-Exploitation</h4><p>Yetki yükseltme ve yatay hareket testleri</p></div>
+                <div class="method-step fade-in fade-in-delay-4"><div class="step-number">05</div><h4>Raporlama</h4><p>Detaylı bulgular ve çözüm önerileri</p></div>
             </div>
         </div>
     </section>
 
-    <!-- References Section -->
     <section id="referanslar">
         <div class="section-container">
             <div class="section-header fade-in">
@@ -1285,77 +449,75 @@
                 <h2 class="section-title">Referanslarımız</h2>
                 <p class="section-subtitle">Dünya genelinde güvenlik açıklarının kapatılmasına katkıda bulunduğumuz kuruluşlar.</p>
             </div>
-
             <div class="clients-grid fade-in">
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/rbs.com" alt="Royal Bank of Scotland" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/rbs.svg" alt="Royal Bank of Scotland" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Royal Bank of Scotland</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/abnamro.com" alt="ABN AMRO" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/abnamro.svg" alt="ABN AMRO" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">ABN AMRO</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/auspost.com.au" alt="Australia Post" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/auspost.svg" alt="Australia Post" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Australia Post</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/godaddy.com" alt="GoDaddy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/godaddy.svg" alt="GoDaddy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">GoDaddy</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/ikea.com" alt="IKEA" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/ikea.svg" alt="IKEA" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">IKEA</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/mastercard.com" alt="Mastercard" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/mastercard.svg" alt="Mastercard" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Mastercard</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/telefonica.com" alt="Telefónica" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/telefonica.svg" alt="Telefónica" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Telefónica</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/xiaomi.com" alt="Xiaomi" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/xiaomi.svg" alt="Xiaomi" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Xiaomi</span>
                 </div>
-                <div class="client-logo">
-                    <img src="https://logo.clearbit.com/ford.com" alt="Ford" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="client-logo logo-invert">
+                    <img src="assets/clients/ford.svg" alt="Ford" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Ford</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/dell.com" alt="Dell" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/dell.svg" alt="Dell" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Dell</span>
                 </div>
-                <div class="client-logo">
-                    <img src="https://logo.clearbit.com/bitsoffreedom.nl" alt="Bits of Freedom" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="client-logo logo-invert">
+                    <img src="assets/clients/bitsoffreedom.svg" alt="Bits of Freedom" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Bits of Freedom</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/comcast.com" alt="Comcast" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/comcast.svg" alt="Comcast" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Comcast</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/telekom.de" alt="Deutsche Telekom" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/telekom.svg" alt="Deutsche Telekom" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Deutsche Telekom</span>
                 </div>
-                <div class="client-logo">
-                    <img src="https://logo.clearbit.com/drexel.edu" alt="Drexel University" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="client-logo logo-on-light">
+                    <img src="assets/clients/drexel.png" alt="Drexel University" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Drexel University</span>
                 </div>
-                <div class="client-logo">
-                    <img src="https://logo.clearbit.com/eur.nl" alt="Erasmus University" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="client-logo logo-on-light">
+                    <img src="assets/clients/erasmus.svg" alt="Erasmus University" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Erasmus University</span>
                 </div>
                 <div class="client-logo">
-                    <img src="https://logo.clearbit.com/intel.com" alt="Intel" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="assets/clients/intel.svg" alt="Intel" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="client-name fallback">Intel</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="iletisim">
         <div class="section-container">
             <div class="section-header fade-in">
@@ -1363,67 +525,33 @@
                 <h2 class="section-title">Güvenlik Değerlendirmesi Talep Edin</h2>
                 <p class="section-subtitle">Uzman ekibimiz en kısa sürede sizinle iletişime geçecektir.</p>
             </div>
-
             <div class="contact-grid">
                 <div class="contact-info fade-in">
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Adres</h4>
-                            <p>İstanbul, Türkiye</p>
-                        </div>
+                        <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+                        <div class="contact-details"><h4>Adres</h4><p>İstanbul, Türkiye</p></div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        </div>
-                        <div class="contact-details">
-                            <h4>E-posta</h4>
-                            <a href="mailto:info@nullsec.com.tr">info@nullsec.com.tr</a>
-                        </div>
+                        <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+                        <div class="contact-details"><h4>E-posta</h4><a href="mailto:info@nullsec.com.tr">info@nullsec.com.tr</a></div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Telefon</h4>
-                            <a href="tel:+902121234567">+90 (212) 123 45 67</a>
-                        </div>
+                        <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                        <div class="contact-details"><h4>Telefon</h4><a href="tel:+905070259334">+90 507 025 93 34</a></div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Çalışma Saatleri</h4>
-                            <p>Pazartesi - Cuma: 09:00 - 18:00</p>
-                        </div>
+                        <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                        <div class="contact-details"><h4>Çalışma Saatleri</h4><p>Pazartesi - Cuma: 09:00 - 18:00</p></div>
                     </div>
                 </div>
-
                 <form class="contact-form fade-in fade-in-delay-1" id="contactForm">
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Ad Soyad *</label>
-                            <input type="text" id="name" name="name" required placeholder="Adınız Soyadınız">
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Şirket</label>
-                            <input type="text" id="company" name="company" placeholder="Şirket Adı">
-                        </div>
+                        <div class="form-group"><label for="name">Ad Soyad *</label><input type="text" id="name" name="name" required placeholder="Adınız Soyadınız"></div>
+                        <div class="form-group"><label for="company">Şirket</label><input type="text" id="company" name="company" placeholder="Şirket Adı"></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">E-posta *</label>
-                            <input type="email" id="email" name="email" required placeholder="ornek@sirket.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefon</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+90 5XX XXX XX XX">
-                        </div>
+                        <div class="form-group"><label for="email">E-posta *</label><input type="email" id="email" name="email" required placeholder="ornek@sirket.com"></div>
+                        <div class="form-group"><label for="phone">Telefon</label><input type="tel" id="phone" name="phone" placeholder="+90 5XX XXX XX XX"></div>
                     </div>
                     <div class="form-group">
                         <label for="service">Hizmet Türü</label>
@@ -1444,12 +572,8 @@
                             <option value="other">Diğer</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Mesajınız *</label>
-                        <textarea id="message" name="message" required placeholder="Projeniz hakkında kısaca bilgi veriniz..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary submit-btn">
-                        Gönder
+                    <div class="form-group"><label for="message">Mesajınız *</label><textarea id="message" name="message" required placeholder="Projeniz hakkında kısaca bilgi veriniz..."></textarea></div>
+                    <button type="submit" class="btn btn-primary submit-btn">Gönder
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     </button>
                 </form>
@@ -1457,12 +581,9 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">
-                <span class="logo-text">Null<span>Sec</span></span>
-            </div>
+            <div class="footer-logo"><span class="logo-text">Null<span>Sec</span></span></div>
             <div class="footer-links">
                 <a href="#anasayfa">Ana Sayfa</a>
                 <a href="#hizmetler">Hizmetler</a>
@@ -1472,82 +593,47 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 NullSec Siber Güvenlik. Tüm hakları saklıdır.</p>
+            <p>&copy; 2026 NullSec Siber Güvenlik. Tüm hakları saklıdır.</p>
             <div class="social-links">
-                <a href="#" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </a>
-                <a href="#" aria-label="Twitter">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                </a>
-                <a href="#" aria-label="GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                </a>
+                <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                <a href="#" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="#" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
-
-        // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Smooth scroll for anchor links
+        mobileMenuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     navLinks.classList.remove('active');
                 }
             });
         });
-
-        // Fade-in animation on scroll
         const fadeElements = document.querySelectorAll('.fade-in');
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         fadeElements.forEach(el => observer.observe(el));
-
-        // Form submission with mailto
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const name = document.getElementById('name').value;
             const company = document.getElementById('company').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const service = document.getElementById('service').value;
             const message = document.getElementById('message').value;
-            
             const subject = `Sızma Testi Talebi - ${name}${company ? ' (' + company + ')' : ''}`;
-            
             const body = `Ad Soyad: ${name}
 Şirket: ${company || 'Belirtilmedi'}
 E-posta: ${email}
@@ -1556,13 +642,8 @@ Hizmet Türü: ${service || 'Belirtilmedi'}
 
 Mesaj:
 ${message}`;
-            
-            const mailtoLink = `mailto:info@nullsec.com.tr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            window.location.href = mailtoLink;
+            window.location.href = `mailto:info@nullsec.com.tr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
-
     </script>
 </body>
 </html>
-
